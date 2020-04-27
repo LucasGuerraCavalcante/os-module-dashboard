@@ -1,8 +1,11 @@
 const os = require('os')
+const fetch = require("node-fetch");
 
 module.exports = {
 
-    index: (req, res) => {
+    index: async (req, res) => {
+
+        console.log(networkInformation)
 
         const total = parseInt(os.totalmem() / 1024 / 1024)
         const mem = parseInt(os.freemem() / 1024 / 1024)
@@ -14,19 +17,19 @@ module.exports = {
         const release = os.release()
         const type = os.type()
 
-        // https://www.w3resource.com/javascript/object-property-method/date-getDay.php
         const weekDay = new Date().getDay()
         const day = new Date().getDate()
         const month = new Date().getMonth()
         const year = new Date().getFullYear()
         const timezone = new Date().getTimezoneOffset()
+        const hour = new Date().getHours()
+        const minutes = new Date().getMinutes()
 
-        // const networkInterfaces = os.networkInterfaces()
+        const url = 'http://gd.geobytes.com/GetCityDetails?'
 
-        // const cpus = os.cpus()
-        // const model = cpus.model
-        // const speed = cpus.speed
-
+        let response = await fetch(url)
+        let result = await response.json();
+        const location = result
 
         const stats = {
 
@@ -42,18 +45,51 @@ module.exports = {
                     usage: `${percents}%`
                 }
             },
-            arch: arch,
-            platform: platform,
-            hostname: hostname,
-            release: release,
-            type: type,
-            weekDay: weekDay,
-            day: day,
-            month: month,
-            year: year,
-            timezone: timezone
-
-        
+            computer: {
+                arch: arch,
+                platform: platform,
+                hostname: hostname,
+                release: release,
+                type: type,
+            },
+            network: {
+                remoteip: location.geobytesremoteip,
+                ipaddress: location.geobytesipaddress,
+            },
+            location: {
+                country: {
+                    code: location.geobytesinternet,
+                    full: location.geobytescountry
+                },
+                region: {
+                    code: location.geobytescode,
+                    full: location.geobytesregion
+                },
+                city: location.geobytescity,
+                continent: location.geobytesmapreference,
+                latitude: location.geobyteslatitude,
+                longitude: location.geobyteslongitude,     
+            },
+            currency: {
+                code: location.geobytescurrencycode,
+                full: location.geobytescurrency
+            },
+            date: {
+                weekDay: weekDay,
+                day: day,
+                month: month,
+                year: year,
+            },
+            time: {
+                timezone: {
+                    raw: location.geobytestimezone,
+                    formatted: `UTC ${location.geobytestimezone}`,
+                },
+                timezone2: timezone,
+                hour: hour,
+                minutes: minutes
+            },
+      
         }
 
         return res.json(stats)
