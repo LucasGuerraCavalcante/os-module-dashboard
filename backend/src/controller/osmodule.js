@@ -1,11 +1,11 @@
 const os = require('os')
 const fetch = require("node-fetch");
 
+const format = require('./formater');
+
 module.exports = {
 
     index: async (req, res) => {
-
-        console.log(networkInformation)
 
         const total = parseInt(os.totalmem() / 1024 / 1024)
         const mem = parseInt(os.freemem() / 1024 / 1024)
@@ -21,7 +21,6 @@ module.exports = {
         const day = new Date().getDate()
         const month = new Date().getMonth()
         const year = new Date().getFullYear()
-        const timezone = new Date().getTimezoneOffset()
         const hour = new Date().getHours()
         const minutes = new Date().getMinutes()
 
@@ -50,7 +49,7 @@ module.exports = {
                 platform: platform,
                 hostname: hostname,
                 release: release,
-                type: type,
+                type: format.operationalSystem(type),
             },
             network: {
                 remoteip: location.geobytesremoteip,
@@ -75,9 +74,9 @@ module.exports = {
                 full: location.geobytescurrency
             },
             date: {
-                weekDay: weekDay,
-                day: day,
-                month: month,
+                weekDay: format.week(weekDay),
+                day: format.number(day),
+                month: format.number(month),
                 year: year,
             },
             time: {
@@ -85,11 +84,9 @@ module.exports = {
                     raw: location.geobytestimezone,
                     formatted: `UTC ${location.geobytestimezone}`,
                 },
-                timezone2: timezone,
-                hour: hour,
-                minutes: minutes
+                hour: format.number(hour),
+                minutes: format.number(minutes)
             },
-      
         }
 
         return res.json(stats)
