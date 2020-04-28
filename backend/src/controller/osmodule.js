@@ -30,7 +30,7 @@ module.exports = {
         let result = await response.json();
         const location = result
 
-        const stats = {
+        const info = {
 
             memory: {
                 raw: {
@@ -80,16 +80,16 @@ module.exports = {
                 year: year,
             },
             time: {
-                timezone: {
-                    raw: location.geobytestimezone,
-                    formatted: `UTC ${location.geobytestimezone}`,
-                },
                 hour: format.number(hour),
                 minutes: format.number(minutes)
             },
+            timezone: {
+                raw: location.geobytestimezone,
+                formatted: `UTC ${location.geobytestimezone}`,
+            }
         }
 
-        return res.json(stats)
+        return res.json(info)
     },
 
 }
