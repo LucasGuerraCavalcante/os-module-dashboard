@@ -1,36 +1,32 @@
-
+// import axios from 'axios'
 // const url = 'http://localhost:3333'
 
-export const getData = async () => {
-    fetch('http://localhost:3333')
-        .then(res => res.json())
-        .then((data) => {
-            console.log(data)
-            return data
-        })
-        .catch(console.log)
-    }
+// module.exports = {
 
-
-// state = {
-//     todos: []
-//   }
-
-// componentDidMount() {
-// fetch(url)
-// .then(res => res.json())
-// .then((data) => {
-//     setState({ todos: data })
-//     console.log(state.todos)
-// })
-// .catch(console.log)
+//     apiData: async () => {
+       
+//         const response = await axios.get(url);
+//         console.log(response);
+//         return respose
+//     }
+    
 // }
 
-// fetch(url)
-//   .then(response => response.json())
-//   .then((jsonData) => {
-//     export default jsonData
-//   })
-//   .catch((error) => {
-//     console.error(error)
-//   })
+
+import axios from 'axios';
+
+const api = axios.create({
+    baseURL: 'http://localhost:3333'
+})
+
+export default api
+
+    // sfddgdg: async () => { 
+    
+    //     let response = await fetch(url)
+    //     let result = await response.json()
+
+    //     console.log(result)
+
+    //     return result   
+    // }

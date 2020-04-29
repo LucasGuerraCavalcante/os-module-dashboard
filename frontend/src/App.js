@@ -8,13 +8,7 @@ import Network from './components/Network'
 
 import './App.css'
 
-import { getData } from './services/api'
-
 function App() {
-
-  const data = getData() 
-
-  console.log({ data }) 
 
   return (
     <div className="App">

@@ -67,25 +67,23 @@ module.exports = {
                 city: location.geobytescity,
                 continent: location.geobytesmapreference,
                 latitude: location.geobyteslatitude,
-                longitude: location.geobyteslongitude,     
+                longitude: location.geobyteslongitude,  
+                currency: {
+                    code: location.geobytescurrencycode,
+                    full: location.geobytescurrency   
+                },
+                timezone: {
+                    raw: location.geobytestimezone,
+                    formatted: `UTC ${location.geobytestimezone}`,
+                }
             },
-            currency: {
-                code: location.geobytescurrencycode,
-                full: location.geobytescurrency
-            },
-            date: {
+            datetime: {
                 weekDay: format.week(weekDay),
                 day: format.number(day),
                 month: format.number(month),
                 year: year,
-            },
-            time: {
                 hour: format.number(hour),
                 minutes: format.number(minutes)
-            },
-            timezone: {
-                raw: location.geobytestimezone,
-                formatted: `UTC ${location.geobytestimezone}`,
             }
         }
 
