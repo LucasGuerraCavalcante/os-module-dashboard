@@ -13,7 +13,8 @@ export default class Memory extends React.Component {
     axios.get('http://localhost:3333')
       .then(res => {
         const apiData = res.data.memory;
-        console.log(apiData)
+        // console.log(apiData)
+        this.setState({ apiData });
       })
   }
 
@@ -21,8 +22,9 @@ export default class Memory extends React.Component {
     return (
       <div className="Memory">
         <h1>Hello Memory</h1>
-        {/* <p>{this.state.apiData.}</p> */}
-
+        <p>{this.state.apiData.free}</p>
+        <p>{this.state.apiData.usage}</p>
+        <p>{this.state.apiData.total}</p>
       </div>
     )
   }

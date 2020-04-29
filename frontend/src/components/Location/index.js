@@ -13,7 +13,8 @@ export default class Location extends React.Component {
     axios.get('http://localhost:3333')
       .then(res => {
         const apiData = res.data.location;
-        console.log(apiData)
+        // console.log(apiData)
+        this.setState({ apiData });
       })
   }
 
@@ -21,8 +22,16 @@ export default class Location extends React.Component {
     return (
       <div className="Location">
         <h1>Hello Location</h1>
-        {/* <p>{this.state.apiData.}</p> */}
-
+        <p>{this.state.apiData.countryCode}</p>
+        <p>{this.state.apiData.country}</p>
+        <p>{this.state.apiData.regionCode}</p>
+        <p>{this.state.apiData.region}</p>
+        <p>{this.state.apiData.city}</p>
+        <p>{this.state.apiData.continent}</p>
+        <p>{this.state.apiData.latitude}</p>
+        <p>{this.state.apiData.longitude}</p>
+        <p>{this.state.apiData.currency}</p>
+        <p>{this.state.apiData.currencyCode}</p>
       </div>
     )
   }

@@ -13,7 +13,8 @@ export default class Network extends React.Component {
     axios.get('http://localhost:3333')
       .then(res => {
         const apiData = res.data.network;
-        console.log(apiData)
+        // console.log(apiData)
+        this.setState({ apiData });
       })
   }
 
@@ -21,8 +22,8 @@ export default class Network extends React.Component {
     return (
       <div className="Network">
         <h1>Hello Network</h1>
-        {/* <p>{this.state.apiData.}</p> */}
-
+        <p>{this.state.apiData.remoteip}</p>
+        <p>{this.state.apiData.ipaddress}</p>
       </div>
     )
   }

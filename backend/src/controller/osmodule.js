@@ -33,16 +33,9 @@ module.exports = {
         const info = {
 
             memory: {
-                raw: {
-                    free: mem,
-                    total: total,
-                    usage: percents
-                },
-                formatted: {
-                    free: `${mem} MB`,
-                    total: `${total} MB`,
-                    usage: `${percents}%`
-                }
+                free: mem, // MB
+                total: total, // MB
+                usage: percents // %
             },
             computer: {
                 arch: arch,
@@ -56,26 +49,17 @@ module.exports = {
                 ipaddress: location.geobytesipaddress,
             },
             location: {
-                country: {
-                    code: location.geobytesinternet,
-                    full: location.geobytescountry
-                },
-                region: {
-                    code: location.geobytescode,
-                    full: location.geobytesregion
-                },
+                countryCode: location.geobytesinternet,
+                country: location.geobytescountry,
+                regionCode: location.geobytescode,
+                region: location.geobytesregion,
                 city: location.geobytescity,
                 continent: location.geobytesmapreference,
                 latitude: location.geobyteslatitude,
                 longitude: location.geobyteslongitude,  
-                currency: {
-                    code: location.geobytescurrencycode,
-                    full: location.geobytescurrency   
-                },
-                timezone: {
-                    raw: location.geobytestimezone,
-                    formatted: `UTC ${location.geobytestimezone}`,
-                }
+                currencyCode: location.geobytescurrencycode,
+                currency: location.geobytescurrency,
+                timezone:  `UTC ${location.geobytestimezone}`,
             },
             datetime: {
                 weekDay: format.week(weekDay),
