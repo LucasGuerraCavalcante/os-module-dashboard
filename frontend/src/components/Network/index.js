@@ -10,12 +10,17 @@ export default class Network extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:3333')
+    try {
+      axios.get('http://localhost:3333')
       .then(res => {
         const apiData = res.data.network;
         // console.log(apiData)
         this.setState({ apiData });
       })
+    } catch(err) {
+      console.log(err)
+    }
+
   }
 
   render() {

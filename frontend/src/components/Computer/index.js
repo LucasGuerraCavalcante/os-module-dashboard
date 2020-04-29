@@ -10,12 +10,16 @@ export default class Computer extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:3333')
+    try {
+      axios.get('http://localhost:3333')
       .then(res => {
         const apiData = res.data.computer;
         // console.log(apiData)
         this.setState({ apiData });
       })
+    } catch(err) {
+      console.log(err)
+    }
   }
 
   render() {
