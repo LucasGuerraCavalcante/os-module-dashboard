@@ -13,11 +13,17 @@ function App() {
   return (
     <div className="App">
       <h1>Hello World</h1>
-      <Computer />
-      <Datetime />
-      <Location />
-      <Memory />
-      <Network />
+      <div>
+        <Datetime />
+        <Location />
+      </div>
+      <div>
+        <Computer />
+        <Network />
+      </div>
+      <div>
+        <Memory />
+      </div>
     </div>
   )
 }

@@ -10,12 +10,18 @@ export default class Memory extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:3333')
-      .then(res => {
-        const apiData = res.data.memory;
-        // console.log(apiData)
-        this.setState({ apiData });
-      })
+    try {
+      setInterval(async () => {
+        axios.get('http://localhost:3333')
+        .then(res => {
+          const apiData = res.data.memory;
+          // console.log(apiData)
+          this.setState({ apiData });
+        })
+      }, 1000)
+    } catch(err) {
+      console.log(err)
+    }
   }
 
   render() {
