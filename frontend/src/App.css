@@ -1,0 +1,46 @@
+.App {
+    width: 100%;
+    max-width: 1120px;
+    height: 100vh;
+    margin: 5% auto 5%;
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 10% 20% 30% 40%;
+    align-items: center;
+    justify-content: center;
+    grid-gap: 1.5rem;
+
+    border-radius: 0.5rem;
+    background-color: grey;
+
+    grid-template-areas: 
+        "header header"
+        "datetime location"
+        "computer network"
+        "memory memory";
+}
+
+.header {
+    grid-area: header;
+}
+
+.datetime {
+    grid-area: datetime;
+}
+
+.location {
+    grid-area: location;
+}
+
+.computer {
+    grid-area: computer;
+}
+
+.network {
+    grid-area: network;
+}
+
+.memory {
+    grid-area: memory;
+}

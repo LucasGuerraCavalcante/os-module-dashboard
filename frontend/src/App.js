@@ -12,16 +12,22 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Hello World</h1>
-      <div>
+      <div className="header">
+        <h1>Hello World</h1>
+      </div>
+      <div className="datetime">
         <Datetime />
+      </div>
+      <div className="location">
         <Location />
       </div>
-      <div>
+      <div className="computer">
         <Computer />
+      </div>
+      <div className="network">
         <Network />
       </div>
-      <div>
+      <div className="memory">
         <Memory />
       </div>
     </div>

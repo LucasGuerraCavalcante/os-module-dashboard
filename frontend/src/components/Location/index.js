@@ -12,10 +12,10 @@ export default class Location extends React.Component {
   componentDidMount() {
     try {
       axios.get('http://localhost:3333')
-      .then(res => {
-        const apiData = res.data.location;
-        // console.log(apiData)
-        this.setState({ apiData });
+        .then(res => {
+          const apiData = res.data.location;
+          // console.log(apiData)
+          this.setState({ apiData });
       })
     } catch(err) {
       console.log(err)
