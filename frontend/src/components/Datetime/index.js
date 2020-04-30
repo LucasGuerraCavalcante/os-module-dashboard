@@ -5,7 +5,7 @@ import axios from 'axios';
 
 export default class Datetime extends React.Component {
 
-  state = { weekDay: '', day: '', month: '', year: '', hour: '', minutes: '' }
+  state = { weekDay: '', day: '00', month: '00', year: '0000', hour: '00', minutes: '00' }
 
   componentDidMount() {
     try {
@@ -32,7 +32,7 @@ export default class Datetime extends React.Component {
       <div className="container">
         {/* <h1>Hello Datetime</h1> */}
         <div className="clock">
-          <a>{this.state.hour}:{this.state.minutes}</a>
+          <p>{this.state.hour}:{this.state.minutes}</p>
         </div>
         <div className="date">
         {this.state.month}/{this.state.day}/{this.state.year}

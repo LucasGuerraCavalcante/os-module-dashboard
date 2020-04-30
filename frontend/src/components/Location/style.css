@@ -1,0 +1,30 @@
+.containerLocation {
+    width: 100%;
+    margin: 5% auto 5%;
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 90% 10%;
+    /* align-items: center;
+    justify-items: center; */
+    grid-gap: 0.5rem;
+
+    grid-template-areas: 
+        "map map"
+        "info currency";
+}
+
+.info {
+    grid-area: info
+}
+
+.currency {
+    grid-area: currency
+}
+
+.map {
+    grid-area: map;
+    margin: 0rem 2rem 1rem 0rem;
+    background-color: #FFF;
+    border-radius: 0.5rem;
+}
