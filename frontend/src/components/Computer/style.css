@@ -1,0 +1,49 @@
+.containerServer {
+    width: 100%;
+    margin: 0 auto 5%;
+    
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50% 50%;
+    align-items: center;
+    justify-items: center;
+    grid-gap: 0rem;
+
+    grid-template-areas: 
+        "computer"
+        "hostname";
+}
+
+.computer {
+    grid-area: computer;
+    align-self: center;
+    justify-self: center;
+}
+
+.computer p {
+    margin-top: 0.5rem;
+    text-align: center;
+
+    background-color: #FFF;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    padding: 0.5rem;
+}
+
+.computer h1 {
+    text-align: center;
+    margin-top: 0; 
+}
+
+.hostname {
+    grid-area: hostname
+}
+
+.hostname p {
+    margin-top: 0.5rem;
+    text-align: center;
+
+    background-color: transparent;
+    font-size: 0.8rem;
+    padding: 0.5rem;
+}

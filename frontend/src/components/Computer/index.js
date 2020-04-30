@@ -26,10 +26,14 @@ export default class Computer extends React.Component {
 
   render() {
     return (
-      <div className="Computer">
-        <h1>Hello Comp</h1>
-        <p>{this.state.type} - {this.state.release} - {this.state.platform} - {this.state.arch}</p>
-        <p>Hostname: {this.state.hostname}</p>
+      <div className="containerServer">
+        <div className="computer">
+          <h1>Server</h1>
+          <p>{this.state.type} - {this.state.release} - {this.state.platform} - {this.state.arch}</p>
+        </div>
+        <div className="hostname">
+          <p>Hostname: {this.state.hostname}</p>
+        </div>
       </div>
     )
   }

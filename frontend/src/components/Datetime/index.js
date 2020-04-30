@@ -18,7 +18,6 @@ export default class Datetime extends React.Component {
             const year = res.data.datetime.year;
             const hour = res.data.datetime.hour;
             const minutes = res.data.datetime.minutes;
-            console.log(res.data.datetime.weekDay)
             this.setState({ weekDay, day, month, year, hour, minutes });
         })
       }, 2000)

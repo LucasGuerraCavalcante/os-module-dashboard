@@ -23,9 +23,11 @@ export default class Network extends React.Component {
 
   render() {
     return (
-      <div className="Network">
-        <h1>Hello Network</h1>
-        <p>{this.state.ipaddress}</p>
+      <div className="containerNetwork">
+        <div className="ip">
+          <h1>IP Address</h1>
+          <p>{this.state.ipaddress}</p>
+        </div>
       </div>
     )
   }

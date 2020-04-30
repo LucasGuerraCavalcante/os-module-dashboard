@@ -8,8 +8,8 @@ import { ComposableMap, Geographies, Geography, Annotation, ZoomableGroup } from
 const FlagIcon = FlagIconFactory(React, { useCssModules: false })
 export default class Location extends React.Component {
 
-  state = { countryCode: '', country: '', regionCode: '', region: '', city: '',
-            continent: '', currency: '', currencyCode: '', map: []}
+  state = { countryCode: 'af', country: '', regionCode: '', region: '', city: '',
+            continent: '', currency: '', currencyCode: '', map: [0,0]}
 
   componentDidMount() {
     try {
@@ -68,8 +68,8 @@ export default class Location extends React.Component {
           </ComposableMap>
         </div>
         <div className="info">
-          <FlagIcon code={this.state.countryCode} size='2x' />
-          <p>{this.state.city}, {this.state.regionCode} - {this.state.region}, {this.state.country} </p>
+
+          <p> <FlagIcon code={this.state.countryCode} size='1x'/> {this.state.country} - {this.state.city}, {this.state.regionCode} - {this.state.region}</p>
           <p>{this.state.continent}</p>
         </div>
         <div className="currency">
