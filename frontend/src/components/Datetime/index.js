@@ -5,37 +5,33 @@ import axios from 'axios';
 
 export default class Datetime extends React.Component {
 
-  state = {
-    apiData: []
-  }
+  state = { weekDay: '', day: '', month: '', year: '', hour: '', minutes: '' }
 
   componentDidMount() {
-
     try {
       setInterval(async () => {
         axios.get('http://localhost:3333')
           .then(res => {
-            const apiData = res.data.datetime;
-            // console.log(apiData)
-            this.setState({ apiData });
+            const weekDay = res.data.datetime.weekDay;
+            const day = res.data.datetime.day;
+            const month = res.data.datetime.month;
+            const year = res.data.datetime.year;
+            const hour = res.data.datetime.hour;
+            const minutes = res.data.datetime.minutes;
+            console.log(res.data.datetime.weekDay)
+            this.setState({ weekDay, day, month, year, hour, minutes });
         })
-      }, 1000)
+      }, 2000)
     } catch(err) {
       console.log(err)
     }
-
   }
 
   render() {
     return (
       <div className="Datetime">
         <h1>Hello Datetime</h1>
-        <p>{this.state.apiData.weekDay}</p>
-        <p>{this.state.apiData.day}</p>
-        <p>{this.state.apiData.month}</p>
-        <p>{this.state.apiData.year}</p>
-        <p>{this.state.apiData.hour}</p>
-        <p>{this.state.apiData.minutes}</p>
+        <p>{this.state.weekDay} - {this.state.month}/{this.state.day}/{this.state.year} - {this.state.hour}:{this.state.minutes}</p>
       </div>
     )
   }

@@ -6,8 +6,8 @@
     
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 10% 20% 30% 40%;
-    align-items: center;
+    grid-template-rows: 5% 5% 40% 40%;
+    align-content: center;
     justify-content: center;
     grid-gap: 1.5rem;
 
@@ -23,6 +23,8 @@
 
 .header {
     grid-area: header;
+    justify-self: center;
+    align-self: center;
 }
 
 .datetime {

@@ -5,18 +5,17 @@ import axios from 'axios';
 
 export default class Memory extends React.Component {
 
-  state = {
-    apiData: []
-  }
+  state = { free: 0, usage: 0, total: 0 }
 
   componentDidMount() {
     try {
       setInterval(async () => {
         axios.get('http://localhost:3333')
           .then(res => {
-            const apiData = res.data.memory;
-            // console.log(apiData)
-            this.setState({ apiData });
+            const free = res.data.memory.free;
+            const usage = res.data.memory.usage;
+            const total = res.data.memory.total;
+            this.setState({ free, usage, total });
         })
       }, 1000)
     } catch(err) {
@@ -28,9 +27,9 @@ export default class Memory extends React.Component {
     return (
       <div className="Memory">
         <h1>Hello Memory</h1>
-        <p>{this.state.apiData.free}</p>
-        <p>{this.state.apiData.usage}</p>
-        <p>{this.state.apiData.total}</p>
+        <p>{this.state.free}</p>
+        <p>{this.state.usage}</p>
+        <p>{this.state.total}</p>
       </div>
     )
   }

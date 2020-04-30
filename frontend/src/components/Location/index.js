@@ -5,17 +5,26 @@ import axios from 'axios';
 
 export default class Location extends React.Component {
 
-  state = {
-    apiData: []
-  }
+  state = { countryCode: '', country: '', regionCode: '', region: '', city: '',
+            continent: '', latitude: '', longitude: '', currency: '', currencyCode: ''}
 
   componentDidMount() {
     try {
       axios.get('http://localhost:3333')
         .then(res => {
-          const apiData = res.data.location;
-          // console.log(apiData)
-          this.setState({ apiData });
+          const countryCode = res.data.location.countryCode;
+          const country = res.data.location.country;
+          const regionCode = res.data.location.regionCode;
+          const region = res.data.location.region;
+          const city = res.data.location.city;
+          const continent = res.data.location.continent;
+          const latitude = res.data.location.latitude;
+          const longitude = res.data.location.longitude;
+          const currency = res.data.location.currency;
+          const currencyCode = res.data.location.currencyCode;
+
+          this.setState({ countryCode, country, regionCode, region, city,
+                          continent, latitude, longitude, currency, currencyCode});
       })
     } catch(err) {
       console.log(err)
@@ -26,16 +35,9 @@ export default class Location extends React.Component {
     return (
       <div className="Location">
         <h1>Hello Location</h1>
-        <p>{this.state.apiData.countryCode}</p>
-        <p>{this.state.apiData.country}</p>
-        <p>{this.state.apiData.regionCode}</p>
-        <p>{this.state.apiData.region}</p>
-        <p>{this.state.apiData.city}</p>
-        <p>{this.state.apiData.continent}</p>
-        <p>{this.state.apiData.latitude}</p>
-        <p>{this.state.apiData.longitude}</p>
-        <p>{this.state.apiData.currency}</p>
-        <p>{this.state.apiData.currencyCode}</p>
+        <p>{this.state.city}, {this.state.regionCode} - {this.state.region}, {this.state.country} {this.state.countryCode}</p>
+        <p>{this.state.continent}, Latitude: {this.state.latitude}, Longitude: {this.state.longitude}</p>
+        <p>Currency: {this.state.currencyCode} {this.state.currency}</p>
       </div>
     )
   }

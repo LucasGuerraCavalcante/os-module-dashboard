@@ -45,7 +45,6 @@ module.exports = {
                 type: format.operationalSystem(type),
             },
             network: {
-                remoteip: location.geobytesremoteip,
                 ipaddress: location.geobytesipaddress,
             },
             location: {

@@ -5,17 +5,15 @@ import axios from 'axios';
 
 export default class Network extends React.Component {
 
-  state = {
-    apiData: []
-  }
+  state = { ipaddress: '' }
 
   componentDidMount() {
     try {
       axios.get('http://localhost:3333')
         .then(res => {
-          const apiData = res.data.network;
+          const ipaddress = res.data.network.ipaddress;
           // console.log(apiData)
-          this.setState({ apiData });
+          this.setState({ ipaddress });
       })
     } catch(err) {
       console.log(err)
@@ -27,8 +25,7 @@ export default class Network extends React.Component {
     return (
       <div className="Network">
         <h1>Hello Network</h1>
-        <p>{this.state.apiData.remoteip}</p>
-        <p>{this.state.apiData.ipaddress}</p>
+        <p>{this.state.ipaddress}</p>
       </div>
     )
   }
