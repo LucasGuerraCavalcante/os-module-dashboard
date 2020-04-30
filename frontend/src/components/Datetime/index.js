@@ -29,9 +29,17 @@ export default class Datetime extends React.Component {
 
   render() {
     return (
-      <div className="Datetime">
-        <h1>Hello Datetime</h1>
-        <p>{this.state.weekDay} - {this.state.month}/{this.state.day}/{this.state.year} - {this.state.hour}:{this.state.minutes}</p>
+      <div className="container">
+        {/* <h1>Hello Datetime</h1> */}
+        <div className="clock">
+          <a>{this.state.hour}:{this.state.minutes}</a>
+        </div>
+        <div className="date">
+        {this.state.month}/{this.state.day}/{this.state.year}
+        </div>
+        <div className="week">
+          {this.state.weekDay}
+        </div>
       </div>
     )
   }
