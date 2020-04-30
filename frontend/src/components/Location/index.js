@@ -2,8 +2,10 @@ import React from 'react';
 import './style.css'
 
 import axios from 'axios';
+import FlagIconFactory  from 'react-flag-icon-css';
 import { ComposableMap, Geographies, Geography, Annotation, ZoomableGroup } from "react-simple-maps";
 
+const FlagIcon = FlagIconFactory(React, { useCssModules: false })
 export default class Location extends React.Component {
 
   state = { countryCode: '', country: '', regionCode: '', region: '', city: '',
@@ -13,16 +15,15 @@ export default class Location extends React.Component {
     try {
       axios.get('http://localhost:3333')
         .then(res => {
-          const countryCode = res.data.location.countryCode;
+          const countryCode = (res.data.location.countryCode).toLowerCase();
           const country = res.data.location.country;
           const regionCode = res.data.location.regionCode;
           const region = res.data.location.region;
           const city = res.data.location.city;
           const continent = res.data.location.continent;
           const currency = res.data.location.currency;
-          const currencyCode = res.data.location.currencyCode;
+          const currencyCode = (res.data.location.currencyCode).toLowerCase();
           const map = [res.data.location.longitude, res.data.location.latitude];
-          console.log(map)
 
           this.setState({ countryCode, country, regionCode, region, city,
                           continent, currency, currencyCode, map});
@@ -67,7 +68,8 @@ export default class Location extends React.Component {
           </ComposableMap>
         </div>
         <div className="info">
-          <p>{this.state.city}, {this.state.regionCode} - {this.state.region}, {this.state.country} {this.state.countryCode}</p>
+          <FlagIcon code={this.state.countryCode} size='2x' />
+          <p>{this.state.city}, {this.state.regionCode} - {this.state.region}, {this.state.country} </p>
           <p>{this.state.continent}</p>
         </div>
         <div className="currency">
