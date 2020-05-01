@@ -3,7 +3,7 @@ import './style.css'
 
 import axios from 'axios';
 import Paper from '@material-ui/core/Paper';
-import { Chart, BarSeries, Title, ArgumentAxis, ValueAxis, PieSeries } from '@devexpress/dx-react-chart-material-ui';
+import { Chart, BarSeries, Title, ArgumentAxis, ValueAxis, PieSeries, Legend, } from '@devexpress/dx-react-chart-material-ui';
 import { Animation } from '@devexpress/dx-react-chart';
 
 export default class Memory extends React.Component {
@@ -21,8 +21,8 @@ export default class Memory extends React.Component {
             const usage = res.data.memory.usage;
             const total = res.data.memory.total;
             const percents = res.data.memory.percents;
-            const dataBar = [{lable: 'Usage', memory: usage},{lable: 'Total', memory: total}];
-            const dataPie = [{lable: 'Usage', memory: total},{lable: 'Free', memory: free}]
+            const dataBar = [{usage: 'Usage', memory: usage},{total: 'Total', memory: total}];
+            const dataPie = [{usage: 'Usage', memory: total},{free: 'Free', memory: free}]
              
             this.setState({ free, usage, total, percents, dataBar, dataPie });
         })
@@ -34,46 +34,58 @@ export default class Memory extends React.Component {
 
   render() {
     return (
-      <div className="memory">
-        <h1>Hello Memory</h1>
-        <p>{this.state.free}</p>
-        <p>{this.state.usage}</p>
-        <p>{this.state.total}</p>
-        <p>{this.state.percents}</p>
+      <div className="containerMemory">
+        <div className="header">
+          <h1>Hello Memory</h1>
+        </div>
+
+        {/* <div className="memoryInfo">
+          <p>{this.state.free}</p>
+          <p>{this.state.usage}</p>
+          <p>{this.state.total}</p>
+          <p>{this.state.percents}</p>
+        </div> */}
         <div className="bar">
           <Paper>
             <Chart
               data={this.state.dataBar}
               >
                 <ArgumentAxis />
-                  <ValueAxis max={2} />
-
+                  <ValueAxis />
                   <BarSeries
-                    valueField="memory"
-                    argumentField="lable"
-                  />
+                      name={`${this.state.usage} MB`}
+                      valueField="memory"
+                      argumentField="usage"
+                      color="#FF5533"
+                    />
+                    <BarSeries
+                      name={`${this.state.total} MB`}
+                      valueField="memory"
+                      argumentField="total"
+                      color="#7159C1"
+                    />
                 <Title text="Memory Usage" />
+                <Legend />
               <Animation />
             </Chart>
           </Paper>
-        </div>
-        <div className="pie">
-          <Paper>
+      </div>
+      <div className="pie">
+        <Paper>
           <Chart
             data={this.state.dataPie}
           >
             <PieSeries
               valueField="memory"
-              argumentField="lable"
+              argumentField="usage"
             />
             <Title
-              text="Memory Free"
+              text="Free Memory"
             />
             <Animation />
           </Chart>
         </Paper>
-        </div>
-
+      </div>
       </div>
     )
   }
