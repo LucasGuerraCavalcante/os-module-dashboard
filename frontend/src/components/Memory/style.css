@@ -21,13 +21,11 @@
 .bar {
     grid-area: bar;
     max-width: 100%;
-    height: 30%;
     padding: 0.5rem 0rem 1rem 1rem;
 }
 
 .pie {
     grid-area: pie;
-    max-width: 50%;
-    max-height: 30%;
+    max-width: 100%;
     padding: 0.5rem 1rem 1rem 0rem;
 }

@@ -3,14 +3,14 @@ import './style.css'
 
 import axios from 'axios';
 import Paper from '@material-ui/core/Paper';
-import { Chart, BarSeries, Title, ArgumentAxis, ValueAxis, PieSeries, Legend, } from '@devexpress/dx-react-chart-material-ui';
-import { Animation } from '@devexpress/dx-react-chart';
+import { Chart, BarSeries, Title, ArgumentAxis, ValueAxis, Legend } from '@devexpress/dx-react-chart-material-ui';
+import { Animation, Stack } from '@devexpress/dx-react-chart';
 
 export default class Memory extends React.Component {
 
   state = { free: 0, usage: 0, total: 0, percents: 0, 
-            dataBar: [{lable: 'usage', memory: 0},{lable: 'free', memory: 0}],
-            dataPie: [{lable: 'usage', memory: 0},{lable: 'free', memory: 0}],}
+            dataBar: [{usage: 'usage', memory: 0},{total: 'free', memory: 0}],
+            dataArea: [{ memory: 'total', usage: 0, free: 0}]}
 
   componentDidMount() {
     try {
@@ -22,9 +22,9 @@ export default class Memory extends React.Component {
             const total = res.data.memory.total;
             const percents = res.data.memory.percents;
             const dataBar = [{usage: 'Usage', memory: usage},{total: 'Total', memory: total}];
-            const dataPie = [{usage: 'Usage', memory: total},{free: 'Free', memory: free}]
+            const dataArea = [{ memory: `Total (${total} MB)`, usage: usage, free: free}]
              
-            this.setState({ free, usage, total, percents, dataBar, dataPie });
+            this.setState({ free, usage, total, percents, dataBar, dataArea });
         })
       }, 1000)
     } catch(err) {
@@ -51,42 +51,58 @@ export default class Memory extends React.Component {
               data={this.state.dataBar}
               >
                 <ArgumentAxis />
-                  <ValueAxis />
+                  {/* <ValueAxis /> */}
                   <BarSeries
-                      name={`${this.state.usage} MB`}
+                      name={`Usage (${this.state.usage} MB)`}
                       valueField="memory"
                       argumentField="usage"
-                      color="#FF5533"
-                    />
-                    <BarSeries
-                      name={`${this.state.total} MB`}
-                      valueField="memory"
-                      argumentField="total"
                       color="#7159C1"
                     />
-                <Title text="Memory Usage" />
-                <Legend />
+                    <BarSeries
+                      name={`Total (${this.state.total} MB)`}
+                      valueField="memory"
+                      argumentField="total"
+                      color="#FF5533"
+                    />
+                <Title text="Memory Usage (MB)" />
+                <Legend position="right" />
               <Animation />
             </Chart>
           </Paper>
       </div>
       <div className="pie">
-        <Paper>
-          <Chart
-            data={this.state.dataPie}
-          >
-            <PieSeries
-              valueField="memory"
-              argumentField="usage"
-            />
-            <Title
-              text="Free Memory"
-            />
+      <Paper>
+        <Chart
+          data={this.state.dataArea}
+        >
+            <ArgumentAxis />
+            {/* <ValueAxis
+              tickFormat={scale => scale.tickFormat(null, '%')}
+            /> */}
+              <BarSeries
+                name={`Usage (${100 - this.state.percents}%)`}
+                valueField="usage"
+                argumentField="memory"
+                color="#7159C1"
+              />
+              <BarSeries
+                name={`Free (${this.state.percents}%)`}
+                valueField="free"
+                argumentField="memory"
+                color="#00FF00"
+              />
             <Animation />
-          </Chart>
-        </Paper>
+            <Legend position="right" />
+            <Title text="Memory Usage (%)" />
+            <Stack
+              stacks={[
+                { series: [`Usage (${100 - this.state.percents}%)`, `Free (${this.state.percents}%)`] },
+              ]}
+            />
+        </Chart>
+      </Paper>
       </div>
-      </div>
+    </div>
     )
   }
 
