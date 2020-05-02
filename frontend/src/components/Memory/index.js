@@ -96,7 +96,8 @@ export default class Memory extends React.Component {
             <Title text="Memory Usage (%)" />
             <Stack
               stacks={[
-                { series: [`Usage (${100 - this.state.percents}%)`, `Free (${this.state.percents}%)`] },
+                { series: [`Usage (${100 - this.state.percents}%)`, 
+                            `Free (${this.state.percents}%)`] },
               ]}
             />
         </Chart>
