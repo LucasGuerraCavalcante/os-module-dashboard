@@ -3,14 +3,14 @@ import './style.css'
 
 import axios from 'axios';
 import Paper from '@material-ui/core/Paper';
-import { Chart, BarSeries, Title, ArgumentAxis, ValueAxis, Legend } from '@devexpress/dx-react-chart-material-ui';
+import { Chart, BarSeries, Title, ArgumentAxis, Legend } from '@devexpress/dx-react-chart-material-ui';
 import { Animation, Stack } from '@devexpress/dx-react-chart';
 
 export default class Memory extends React.Component {
 
   state = { free: 0, usage: 0, total: 0, percents: 0, 
             dataBar: [{usage: 'usage', memory: 0},{total: 'free', memory: 0}],
-            dataArea: [{ memory: 'total', usage: 0, free: 0}]}
+            dataPercents: [{ memory: 'total', usage: 0, free: 0}]}
 
   componentDidMount() {
     try {
@@ -22,9 +22,9 @@ export default class Memory extends React.Component {
             const total = res.data.memory.total;
             const percents = res.data.memory.percents;
             const dataBar = [{usage: 'Usage', memory: usage},{total: 'Total', memory: total}];
-            const dataArea = [{ memory: `Total (${total} MB)`, usage: usage, free: free}]
+            const dataPercents = [{ memory: `Total (${total} MB)`, usage: usage, free: free}]
              
-            this.setState({ free, usage, total, percents, dataBar, dataArea });
+            this.setState({ free, usage, total, percents, dataBar, dataPercents });
         })
       }, 1000)
     } catch(err) {
@@ -35,9 +35,6 @@ export default class Memory extends React.Component {
   render() {
     return (
       <div className="containerMemory">
-        <div className="header">
-          <h1>Hello Memory</h1>
-        </div>
 
         {/* <div className="memoryInfo">
           <p>{this.state.free}</p>
@@ -70,10 +67,10 @@ export default class Memory extends React.Component {
             </Chart>
           </Paper>
       </div>
-      <div className="pie">
+      <div className="percents">
       <Paper>
         <Chart
-          data={this.state.dataArea}
+          data={this.state.dataPercents}
         >
             <ArgumentAxis />
             {/* <ValueAxis

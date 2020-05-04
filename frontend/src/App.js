@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <div className="header">
-        <h1>Hello World</h1>
+        <h1>Simple OS Dashboard</h1>
       </div>
       <div className="datetime">
         <Datetime />

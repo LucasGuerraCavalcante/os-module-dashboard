@@ -3,6 +3,7 @@ import './style.css'
 
 import axios from 'axios';
 import FlagIconFactory  from 'react-flag-icon-css';
+import getSymbolFromCurrency from 'currency-symbol-map';
 import { ComposableMap, Geographies, Geography, Annotation, ZoomableGroup } from "react-simple-maps";
 
 const FlagIcon = FlagIconFactory(React, { useCssModules: false })
@@ -22,7 +23,7 @@ export default class Location extends React.Component {
           const city = res.data.location.city;
           const continent = res.data.location.continent;
           const currency = res.data.location.currency;
-          const currencyCode = (res.data.location.currencyCode).toLowerCase();
+          const currencyCode = getSymbolFromCurrency(res.data.location.currencyCode);
           const map = [res.data.location.longitude, res.data.location.latitude];
 
           this.setState({ countryCode, country, regionCode, region, city,

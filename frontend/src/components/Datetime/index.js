@@ -27,6 +27,25 @@ export default class Datetime extends React.Component {
   }
 
   render() {
+
+    const currentDay = { color: "#FF5533", fontSize: "30px" }
+
+    let monday = { color: "#666", background: "#CCC", margin: "0.5rem" }
+    let tuesday = { color: "#666", background: "#CCC", margin: "0.5rem" }
+    let wednesday = { color: "#666", background: "#CCC", margin: "0.5rem" }
+    let thursday = { color: "#666", background: "#CCC", margin: "0.5rem" }
+    let friday = { color: "#666", background: "#CCC", margin: "0.5rem" }
+    let saturday = { color: "#666", background: "#CCC", margin: "0.5rem" }
+    let sunday = { color: "#666", background: "#CCC", margin: "0.5rem" }
+
+    if (this.state.weekDay == "Monday") { monday = { color: "#FF5533", fontSize: "30px" } }
+    else if (this.state.weekDay == "Tuesday") { tuesday = { color: "#FF5533", fontSize: "30px" }  }
+    else if (this.state.weekDay == "Wednesday") { wednesday = { color: "#FF5533", fontSize: "30px" }  }
+    else if (this.state.weekDay == "Thursday") { thursday = { color: "#FF5533", fontSize: "30px" }  }
+    else if (this.state.weekDay == "Friday") { friday = { color: "#FF5533", fontSize: "30px" }  }
+    else if (this.state.weekDay == "Saturday") { saturday = { color: "#FF5533", fontSize: "30px" }  }
+    else if (this.state.weekDay == "Sunday") { sunday = { color: "#FF5533", fontSize: "30px" }  }
+
     return (
       <div className="container">
         {/* <h1>Hello Datetime</h1> */}
@@ -38,6 +57,15 @@ export default class Datetime extends React.Component {
         </div>
         <div className="week">
           {this.state.weekDay}
+        </div>
+        <div className="weekDayBoxes">
+          <div className="dayBox" style={monday}>Mon</div>
+          <div className="dayBox" style={tuesday}>Tues</div>
+          <div className="dayBox" style={wednesday}>Wed</div>
+          <div className="dayBox" style={thursday}>Thurs</div>
+          <div className="dayBox" style={friday}>Fri</div>
+          <div className="dayBox" style={saturday}>Sat</div>
+          <div className="dayBox" style={sunday}>Sun</div>
         </div>
       </div>
     )

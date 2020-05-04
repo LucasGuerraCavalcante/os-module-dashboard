@@ -4,18 +4,13 @@
     
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 5% 95%;
+    grid-template-rows: 100%;
     /* align-items: center;
     justify-items: center; */
     grid-gap: 0.5rem;
 
     grid-template-areas: 
-        "header header"
-        "bar pie";
-}
-
-.header {
-    grid-area: header
+        "bar percents";
 }
 
 .bar {
@@ -24,8 +19,8 @@
     padding: 0.5rem 0rem 1rem 1rem;
 }
 
-.pie {
-    grid-area: pie;
+.percents {
+    grid-area: percents;
     max-width: 100%;
     padding: 0.5rem 1rem 1rem 0rem;
 }
