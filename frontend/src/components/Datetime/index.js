@@ -38,13 +38,13 @@ export default class Datetime extends React.Component {
     let saturday = { color: "#666", background: "#CCC", margin: "0.5rem" }
     let sunday = { color: "#666", background: "#CCC", margin: "0.5rem" }
 
-    if (this.state.weekDay == "Monday") { monday = { color: "#FF5533", fontSize: "30px" } }
-    else if (this.state.weekDay == "Tuesday") { tuesday = { color: "#FF5533", fontSize: "30px" }  }
-    else if (this.state.weekDay == "Wednesday") { wednesday = { color: "#FF5533", fontSize: "30px" }  }
-    else if (this.state.weekDay == "Thursday") { thursday = { color: "#FF5533", fontSize: "30px" }  }
-    else if (this.state.weekDay == "Friday") { friday = { color: "#FF5533", fontSize: "30px" }  }
-    else if (this.state.weekDay == "Saturday") { saturday = { color: "#FF5533", fontSize: "30px" }  }
-    else if (this.state.weekDay == "Sunday") { sunday = { color: "#FF5533", fontSize: "30px" }  }
+    if (this.state.weekDay === "Monday") { monday = { color: "#FF5533", fontSize: "30px" } }
+    else if (this.state.weekDay === "Tuesday") { tuesday = { color: "#FF5533", fontSize: "30px" }  }
+    else if (this.state.weekDay === "Wednesday") { wednesday = { color: "#FF5533", fontSize: "30px" }  }
+    else if (this.state.weekDay === "Thursday") { thursday = { color: "#FF5533", fontSize: "30px" }  }
+    else if (this.state.weekDay === "Friday") { friday = { color: "#FF5533", fontSize: "30px" }  }
+    else if (this.state.weekDay === "Saturday") { saturday = { color: "#FF5533", fontSize: "30px" }  }
+    else if (this.state.weekDay === "Sunday") { sunday = { color: "#FF5533", fontSize: "30px" }  }
 
     return (
       <div className="container">
