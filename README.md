@@ -2,9 +2,7 @@
 
 API that gets data from your OS and from the Internet (Node.js) and a Dashboard that shows that data (React)
 
-### API Json
-
-![json]()
+Both folders (back/frontend) -> npm install -> npm start
 
 ### Memory Usage
 
@@ -13,3 +11,5 @@ API that gets data from your OS and from the Internet (Node.js) and a Dashboard 
 ### Date, Location, Server and IP 
 
 ![example](https://github.com/LucasGuerraCavalcante/os-module-dashboard/blob/master/imgs/img.png)
+
+
